@@ -1,0 +1,48 @@
+#  ------------ General options ----------------------------------------
+model_name = resnet20_cifar100
+generateDataPath = "./data/cifar100/resnet20_cifar100_refined_gaussian_hardsample_beta10.0_gamma2.0_group"
+generateLabelPath = "./data/cifar100/resnet20_cifar100_labels_hardsample_beta10.0_gamma2.0_group"
+dataPath = "/mnt/cephfs/home/lihuantong/code/vgg_fuseBN/data/"
+dataset = "cifar100" # options: imagenet | cifar100
+
+# ------------- Data options -------------------------------------------
+nThreads = 8  # number of data loader threads
+
+# ---------- Optimization options for S --------------------------------------
+nEpochs = 151  # number of total epochs to train 400
+batchSize = 64  # batchsize
+momentum = 0.9  # momentum 0.9
+weightDecay = 1e-4  # weight decay 1e-4
+opt_type = "SGD"
+
+lr_S = 0.00001 # initial learning rate = 0.00001
+lrPolicy_S = "multi_step"  # options: multi_step | linear | exp | const | step
+step_S = [20,40,60]  # step for linear or exp learning rate policy default [100, 200, 300]
+decayRate_S = 0.1 # lr decay rate
+
+# ---------- Model options ---------------------------------------------
+nClasses = 100  # number of classes in the dataset
+
+# ---------- Quantization options ---------------------------------------------
+qw = 3
+qa = 3
+
+# ----------KD options ---------------------------------------------
+temperature = 20
+alpha = 20
+
+# ----------Generator options ---------------------------------------------
+latent_dim = 100
+img_size = 32
+channels = 3
+
+lr_G = 0.001       # default 0.001
+lrPolicy_G = "multi_step"  # options: multi_step | linear | exp | const | step
+step_G = [100,200,300]   # step for linear or exp learning rate policy
+decayRate_G = 0.1 # lr decay rate
+b1 = 0.5
+b2 = 0.999
+
+# ----------- parameter --------------------------------------
+lam = 2000
+eps = 0.02
